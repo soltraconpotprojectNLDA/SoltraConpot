@@ -15,7 +15,9 @@ ABOUT
 -----
 
 Conpot is an ICS honeypot with the goal to collect intelligence about the motives and
-methods of adversaries targeting industrial control systems
+methods of adversaries targeting industrial control systems.
+
+This version has been adjusted to work with Soltra Edge http://www.soltra.com/
 
 DOCUMENTATION
 -------------
