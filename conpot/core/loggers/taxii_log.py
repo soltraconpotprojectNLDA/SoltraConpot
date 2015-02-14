@@ -35,7 +35,6 @@ class TaxiiLogger(object):
         self.use_https = config.getboolean('taxii', 'use_https')
         self.username = config.get('taxii', 'username')
         self.password = config.get('taxii', 'password')
-	print "username = " + self.username + " Password = "  + self.password
         self.client = HttpClient()
         self.client.setProxy('noproxy')
         self.client.set_auth_credentials({'username': self.username, 'password': self.password})
