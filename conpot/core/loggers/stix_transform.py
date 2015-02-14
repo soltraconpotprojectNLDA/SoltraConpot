@@ -48,6 +48,7 @@ import conpot
 class StixTransformer(object):
     def __init__(self, config, dom):
         self.config = config._sections['taxii']
+	self.sessionid = 1
         # This should not be hardcoded
         port_path_list = [
             '//conpot_template/protocols/modbus/@port',
@@ -89,7 +90,11 @@ class StixTransformer(object):
         self._set_namespace(self.config['contact_domain'], self.config['contact_name'])
         stix_package = STIXPackage()
         self._add_header(stix_package, "Unauthorized traffic to honeypot", "Describes one or more honeypot incidents")
-
+	if not event.has_key('session_id'):
+		event['session_id'] = str(self.sessionid)
+	else:
+		self.sessionid = str(int(event['session_id']) + 1)
+	#event['session_id'] = str(self.sessionid)
         incident = Incident(id_="%s:%s-%s" % (self.config['contact_name'], 'incident', event['session_id']))
         initial_time = StixTime()
         initial_time.initial_compromise = event['timestamp'].isoformat()
